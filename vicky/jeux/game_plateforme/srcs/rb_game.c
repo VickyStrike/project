@@ -37,17 +37,17 @@ void				rb_game(int f_fscreen)
 	map.rend = window.rend;
 	map.map = ft_file_to_str(PATH_MAP);
 	rb_map_len(&map);
-	map.tilset.texture = rb_get_texture(map.rend, &map.tilset.texture, PATH_TILSET);
+	map.tilset.texture.texture = rb_get_texture(map.rend, &map.tilset.texture, PATH_TILSET);
 
-	map.tilset.texture->rect.x = texture->rect.w / 2 - rect.h / 2;
-	map.tilset.texture->rect.y = texture->rect.h / 2 - rect.w / 2;
+	map.tilset.texture.rect.x = map.tilset.texture.rect.w / 2 - map.tilset.texture.rect.h / 2;
+	map.tilset.texture.rect.y = map.tilset.texture.rect.h / 2 - map.tilset.texture.rect.w / 2;
 
 	rb_game_loop(&window, &map);
 
 	i = 0;
 	while (i < 6)
 	{
-		SDL_DestroyTexture(map.tilset.texture);
+		SDL_DestroyTexture(map.tilset.texture.texture);
 		i++;
 	}
 	SDL_DestroyRenderer(window.rend);

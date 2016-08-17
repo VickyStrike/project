@@ -37,85 +37,85 @@
 
 typedef struct		s_color
 {
-	int				c_r;
-	int				c_g;
-	int				c_b;
-	int				c_a;
-}					t_color;
+	int		c_r;
+	int		c_g;
+	int		c_b;
+	int		c_a;
+}			t_color;
 
 typedef struct		s_texture
 {
-	SDL_Texture		*texture;
-	SDL_Rect		rect;
-	int				flag;
-}					t_texture;
+	SDL_Texture	*texture;
+	SDL_Rect	rect;
+	int		flag;
+}			t_texture;
 
 typedef struct		s_anim
 {
-	t_texture		anim[6];
-	size_t			rate;
-	size_t			timer;
-	int				current_i;
-}					t_anim;
+	t_texture	anim[6];
+	size_t		rate;
+	size_t		timer;
+	int		current_i;
+}			t_anim;
 
 typedef struct		s_window
 {
-	SDL_Window		*window;
+	SDL_Window	*window;
 	SDL_Renderer	*rend;
-	int				flag_fscreen;
-	t_color			color;
-	t_anim			animation;
-}					t_window;
+	int		flag_fscreen;
+	t_color		color;
+	t_anim		animation;
+}			t_window;
 
 typedef struct		s_event
 {
-	ssize_t			type;
-	int				(*rb_type_hdl)(SDL_Event *, t_window *);
-}					t_event;
+	ssize_t		type;
+	int		(*rb_type_hdl)(SDL_Event *, t_window *);
+}			t_event;
 
-typedef struct		s_tilset;
+typedef struct		s_tilset
 {
-	t_texture		texture;
-	SDL_Rect		rect[TILSET_SIZE];
-}					t_tilset;
+	t_texture	texture;
+	SDL_Rect	rect[TILSET_SIZE];
+}			t_tilset;
 
-typedef struct		s_map;
+typedef struct		s_map
 {
-	t_tilset		tilset;
+	t_tilset	tilset;
 	SDL_Renderer	*rend;
-	int				w_map;
-	int				h_map;
-	char			*map;
-}					t_map;
+	int		w_map;
+	int		h_map;
+	char		*map;
+}			t_map;
 
-void				rb_init(void);
-void				rb_game(int flag_fscreen);
-void				rb_quit(void);
+void			rb_init(void);
+void			rb_game(int flag_fscreen);
+void			rb_quit(void);
 
-int					rb_create_window(t_window *window);
-int					rb_create_rend(t_window *window);
-void				rb_create_anim(t_window *window);
+int			rb_create_window(t_window *window);
+int			rb_create_rend(t_window *window);
+void			rb_create_anim(t_window *window);
 
-SDL_Texture			*rb_get_texture(SDL_Renderer *rend, t_texture *texture, char *path);
-void				rb_set_anim_rect(t_window *window);
+SDL_Texture		*rb_get_texture(SDL_Renderer *rend, t_texture *texture, char *path);
+void			rb_set_anim_rect(t_window *window);
 
-void				rb_map_len(t_map *map);
+void			rb_map_len(t_map *map);
 
 
-void				rb_draw(t_window *window);
-int					rb_get_event(t_window *window);
-void				rb_game_loop(t_window *window, t_map *map);
+void			rb_draw(t_window *window);
+int			rb_get_event(t_window *window);
+void			rb_game_loop(t_window *window, t_map *map);
 
-int					rb_quit_hdl(SDL_Event *event, t_window *window);
-int					rb_window_event_hdl(SDL_Event *event, t_window *window);
-int					rb_keydown_hdl(SDL_Event *event, t_window *window);
-int					rb_keyup_hdl(SDL_Event *event, t_window *window);
-int					rb_mouse_button_down_hdl(SDL_Event *event, t_window *window);
-int					rb_mouse_button_up_hdl(SDL_Event *event, t_window *window);
+int			rb_quit_hdl(SDL_Event *event, t_window *window);
+int			rb_window_event_hdl(SDL_Event *event, t_window *window);
+int			rb_keydown_hdl(SDL_Event *event, t_window *window);
+int			rb_keyup_hdl(SDL_Event *event, t_window *window);
+int			rb_mouse_button_down_hdl(SDL_Event *event, t_window *window);
+int			rb_mouse_button_up_hdl(SDL_Event *event, t_window *window);
 
-int					rb_key_escape_hdl(SDL_Event *event, t_window *window);
-int					rb_key_fullscreen_hdl(SDL_Event *event, t_window *window);
-int					rb_key_disco_hdl(SDL_Event *event, t_window *window);
-int					rb_key_right_image_hdl(SDL_Event *event, t_window *window);
+int			rb_key_escape_hdl(SDL_Event *event, t_window *window);
+int			rb_key_fullscreen_hdl(SDL_Event *event, t_window *window);
+int			rb_key_disco_hdl(SDL_Event *event, t_window *window);
+int			rb_key_right_image_hdl(SDL_Event *event, t_window *window);
 
 #endif
